@@ -12,6 +12,11 @@ public class SkrivBlogg {
 
 	public static boolean skriv(Blogg samling, String filnavn) {
 
+		
+		String s = samling.toString();
+		
+		
+		
 		throw new UnsupportedOperationException(TODO.method());
 	}
 }

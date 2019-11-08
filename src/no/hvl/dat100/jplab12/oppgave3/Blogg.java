@@ -5,46 +5,98 @@ import no.hvl.dat100.jplab12.oppgave1.*;
 
 public class Blogg {
 
-	// TODO: objektvariable 
-
+	private int lengde;
+	private Innlegg[] innleggtabell;
+	private int nesteLedige;
+	
+	
 	public Blogg() {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		lengde = 20;
 	}
 
 	public Blogg(int lengde) {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		this.lengde = lengde;
+		innleggtabell =  new Innlegg[lengde];
+		nesteLedige = 0;
 	}
 
 	public int getAntall() {
-		throw new UnsupportedOperationException(TODO.method());
+		
+//		for(int i = 0; i < lengde; i++) {
+//			if (innleggtabell[i] != null) {
+//				Antall +=1;
+//			}
+//		}
+//		
+//		return Antall;
+		
+		return nesteLedige;
 	}
 	
 	public Innlegg[] getSamling() {
-		throw new UnsupportedOperationException(TODO.method());
+		return innleggtabell;
 
 	}
 	
 	public int finnInnlegg(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		int svar = -1;
+		for(int i = 0; i < lengde; i++) {
+			if(innlegg.erLik(innleggtabell[i])) {
+				svar = i;
+			}
+		}
+			return svar;
 	}
 
 	public boolean finnes(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
-	}
 
+		boolean svar = false;
+		for(int i = 0; i < lengde; i++) {
+			
+			if(innlegg.erLik(innleggtabell[i])) {
+				svar = true;
+			}
+			
+		}
+		return svar;
+	}
+		
 	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
-
+		
+		boolean svar = false;
+		if (nesteLedige < lengde) {
+			svar = true;
+		}
+		return svar;
 	}
+
 	
 	public boolean leggTil(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
-	}
+		boolean svar = false;
+		for (int i = 0; i < lengde; i++) {
+		if(!finnes(innlegg) && ledigPlass()) {
+			innleggtabell[nesteLedige] = innlegg;
+			nesteLedige++;
+			svar = true;
+		}
+		}
+			return svar;
+		}
+	
 	
 	public String toString() {
-		throw new UnsupportedOperationException(TODO.method());
+		
+	
+		String s = nesteLedige + "\n";
+		for (int i = 0; i < lengde; i++) {
+			s += innleggtabell[i].toString();
+		}
+		
+		return s;
+		
+		
 	}
 
 	// valgfrie oppgaver nedenfor
